@@ -7,10 +7,10 @@ interface AuthContextType {
     token: string | null;
     isAuthenticated: boolean;
     isLoading: boolean;
-    user: any; // Replace with your user type
+    user: any; 
     error: string | null;
-    register: (userData: any) => Promise<boolean>; // Replace with your user data type
-    login: (userData: any) => Promise<boolean>; // Replace with your user data type
+    register: (userData: any) => Promise<boolean>; 
+    login: (userData: any) => Promise<boolean>; 
     logout: () => void;
     clearError: () => void;
 }

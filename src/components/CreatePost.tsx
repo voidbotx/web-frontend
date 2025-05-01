@@ -96,79 +96,77 @@ const CreatePost = ({ onPostCreated }: CreatePostProps) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 mb-6">
-      <form onSubmit={handleSubmit}>
-        <div className="flex space-x-3">
+    <div className=" rounded-xl shadow-md p-6 mb-6 border border-zinc-200 dark:border-zinc-800">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex gap-4 items-start">
           <img
-            src={user?.avatar}
+            src={user?.avatar || "/media/images/default-avatar.jpg"}
             alt={user?.username}
-            className="w-10 h-10 rounded-full"
+            className="w-10 h-10 rounded-full object-cover border border-zinc-300 dark:border-zinc-700"
           />
-          <div className="flex-1">
-            <Textarea
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="What's on your mind?"
-              rows={1}
-              className="resize-none border focus:ring-0 focus-visible:ring-0 focus-visible:outline-none"
+          <Textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="What's on your mind?"
+            rows={3}
+            className="flex-1 resize-none border-none bg-zinc-100 dark:bg-zinc-800 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+          />
+        </div>
+
+        {imagePreview && (
+          <div className="relative rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-700">
+            <img
+              src={imagePreview}
+              alt="Post preview"
+              className="max-h-64 w-full object-contain bg-gray-100 dark:bg-zinc-800"
             />
-
-            {imagePreview && (
-              <div className="mt-4 relative rounded-lg overflow-hidden">
-                <img
-                  src={imagePreview}
-                  alt="Post preview"
-                  className="max-h-64 w-full object-contain bg-gray-100"
-                />
-                <Button
-                  type="button"
-                  size="icon"
-                  variant="destructive"
-                  className="absolute top-2 right-2 h-8 w-8 rounded-full"
-                  onClick={removeImage}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-            )}
-
-            <div className="mt-4 flex justify-between items-center">
-              <div>
-                <Label
-                  htmlFor="picture"
-                  className="flex items-center gap-2 cursor-pointer text-sm font-medium text-primary hover:text-primary/80"
-                >
-                  <ImageIcon className="h-4 w-4" />
-                  <span>Add Photo</span>
-                  <input
-                    id="picture"
-                    type="file"
-                    className="sr-only"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    ref={fileInputRef}
-                  />
-                </Label>
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting || (!text.trim() && !image)}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Posting...
-                  </>
-                ) : (
-                  "Post"
-                )}
-              </Button>
-            </div>
+            <Button
+              type="button"
+              size="icon"
+              variant="destructive"
+              className="absolute top-2 right-2 h-8 w-8 rounded-full"
+              onClick={removeImage}
+            >
+              <X className="h-4 w-4" />
+            </Button>
           </div>
+        )}
+
+        <div className="flex justify-between items-center">
+          <Label
+            htmlFor="picture"
+            className="flex items-center gap-2 cursor-pointer text-sm font-medium text-indigo-600 hover:text-indigo-700"
+          >
+            <ImageIcon className="h-5 w-5" />
+            <span>Add Photo</span>
+            <input
+              id="picture"
+              type="file"
+              className="sr-only"
+              accept="image/*"
+              onChange={handleImageChange}
+              ref={fileInputRef}
+            />
+          </Label>
+
+          <Button
+            type="submit"
+            disabled={isSubmitting || (!text.trim() && !image)}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-sm font-semibold rounded-md disabled:opacity-50"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Posting...
+              </>
+            ) : (
+              "Post"
+            )}
+          </Button>
         </div>
       </form>
     </div>
+
   );
 };
 
