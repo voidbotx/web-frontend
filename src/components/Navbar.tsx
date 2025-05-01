@@ -24,7 +24,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Compass, Home, Menu, User, LogOut } from "lucide-react";
+import { Bell, Compass, Home, Menu, User, LogOut } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 function Navbar() {
@@ -64,7 +64,7 @@ function Navbar() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-2">
+                    {/* <nav className="hidden md:flex items-center gap-2">
                         <Link
                             href="/"
                             className="text-sm font-medium text-muted-foreground hover:text-primary flex items-center gap-1.5 px-3 py-2 rounded-md transition-colors"
@@ -79,8 +79,10 @@ function Navbar() {
                             <Compass className="h-4 w-4" />
                             Explore
                         </Link>
-                    </nav>
+                    </nav> */}
                 </div>
+                
+                
 
                 {/* Desktop User Menu */}
                 <div className="hidden md:flex items-center gap-4">
